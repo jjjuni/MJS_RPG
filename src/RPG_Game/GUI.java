@@ -697,22 +697,26 @@ public class GUI extends JFrame implements Runnable{
             while (true) {
                 try {
                     if (inGame && Background.current_BG.equals("slime_dungeon")) {
+
                         for (int i = 0; i < 5; i++) {
                             if (slime[i].die) {
                                 ingameDisplay.remove(slime[i].monster);
                                 slime[i] = new Slime();
                                 Background.background.add(slime[i].monster);
                                 slime[i].die = false;
+                                slime[i].isRunning = true;
                             }
                         }
                     }
                     else if (inGame && Background.current_BG.equals("golem_dungeon")) {
+
                         for (int i = 0; i < 5; i++){
                             if (golem[i].die) {
                                 ingameDisplay.remove(golem[i].monster);
                                 golem[i] = new Golem();
                                 Background.background.add(golem[i].monster);
                                 golem[i].die = false;
+                                golem[i].isRunning = true;
                             }
                         }
                     }

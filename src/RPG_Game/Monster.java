@@ -20,6 +20,7 @@ public class Monster implements Runnable{
     boolean die;
     String current_motion = "left";
     int x;
+    boolean isRunning = true;
     Item dropitem = new Item();
 
     MonsterLabel monster;
@@ -95,8 +96,7 @@ public class Monster implements Runnable{
         monsterImg = monster_die.getImage();
         Background.background.remove(monster);
         monster.remove(HPlabel);
-        attackorattacked.stop();
-        monsterMove.stop();
+        isRunning = false;
     }
 
     void sound(String state){
@@ -122,7 +122,7 @@ public class Monster implements Runnable{
 
     Thread monsterMove = new Thread(this){
         public void run(){
-            while (!die){
+            while (!die && isRunning){
                 try {
                     monsterMove();
                     Thread.sleep(30);
@@ -133,7 +133,7 @@ public class Monster implements Runnable{
 
     Thread attackorattacked = new Thread(this){
         public void run(){
-            while (!die){
+            while (!die && isRunning){
                 try {
                     monsterAttack();
                     monsterAttacked();
